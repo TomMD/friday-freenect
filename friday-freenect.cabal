@@ -4,7 +4,9 @@
 name:                friday-freenect
 version:             0.1.0.0
 synopsis:            Convert freenect vectors to the Friday image formats.
--- description:         
+description:         High-level interface for obtaining a stream of depth images
+                     from the 'freenect' library in 'Grey' format for the
+                     'Friday' library.
 homepage:            https://github.com/TomMD/friday-freenect
 license:             BSD3
 license-file:        LICENSE

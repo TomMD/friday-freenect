@@ -1,5 +1,4 @@
 {-# LANGUAGE RecordWildCards #-}
-{-# OPTIONS_GHC -Wall #-}
 
 module Vision.Freenect
   ( initialize
@@ -15,11 +14,12 @@ import Vision.Freenect.Convert
 import Freenect
 import Data.IORef
 
+-- | A pseudo-boolean indicating whether the process should continue or halt.
 data RunStatus = Stop | Continue deriving (Eq, Ord, Show, Read, Enum, Bounded)
 
 -- | Structure for configuring the depth callback, method to acquire the
 -- run status (stopping the callbacks), and amount of delay between frame
--- acquisition (in micro seconds).
+-- acquisition (in micro seconds, 100000 ~ 10fps).
 data Config = Config { depthCallback :: Depth -> IO ()
                      , killSignal    :: IO RunStatus
                      , delayTime     :: Int
