@@ -1,8 +1,7 @@
 {-# LANGUAGE RecordWildCards #-}
 
 module Vision.Freenect
-  ( initialize
-  , withKinect, withKinect'
+  ( withKinect, withKinect'
   -- * Types
   , Depth
   , RunStatus(..), Config(..)
@@ -37,7 +36,7 @@ withKinect cb =
          killSig = readIORef continueRef
      withKinect' Config { depthCallback = cb'
                         , killSignal    = killSig
-                        , delayTime     = 100000 -- max of 10fps
+                        , delayTime     = 50000 -- max of 20fps
                         }
 
 withKinect' :: Config -> IO ()
@@ -52,5 +51,5 @@ withKinect' (Config {..}) = do
         fix $ \cont -> do
                  c <- killSignal
                  if c == Continue
-                  then processEvents ctx >> threadDelay delayTime >> cont
+                  then threadDelay delayTime >> processEvents ctx >> cont
                   else return ()
